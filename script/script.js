@@ -17,7 +17,7 @@ const appInit = once(async () => {
 	const keys = ['id', 'name'];
 	const values = keys.map(key => params.get(key));
 	const singer = keys
-		.map((key, i) => values[i] && singers.find(s => s[key] === values[i]))
+		.map((key, i) => values[i] && singers.find(singer => String(singer[key]) === values[i]))
 		.filter(Boolean)[0];
 	if (!singer) return MessageField.show('データが指定されていません');
 
