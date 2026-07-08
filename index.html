@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<base target="_top">
+		<title>UtaLog Viewer</title>
+		<link rel="stylesheet" href="./css/style.css">
+		<script type="module" src="./script/script.js"></script>
+	</head>
+	<body>
+		<div id="topContainer">
+			<div id="topBar">
+				<div>
+					<div id="socialLinks" hidden></div>
+				</div>
+				<div>
+					<fieldset id="tableSelect" hidden>
+					</fieldset>
+				</div>
+			</div>
+
+			<div id="messageField">
+				<span>初期化に失敗しました。</span>
+				<span>再読み込みで解消する場合があります。</span>
+			</div>
+
+			<div id="videoContainer" hidden>
+				<h1 id="videoNotice">
+					<span>楽曲を選択すると、</span>
+					<span>動画が再生されます</span>
+				</h1>
+				<iframe id="videoPlayer" frameborder="0" allowfullscreen></iframe>
+				<a id="platformLink" href="#" target="_blank"></a>
+			</div>
+
+			<div id="actionBar" hidden>
+				<div>
+					<input id="searchBox" type="search" placeholder="検索...">
+					<p id="filterResult"><span id="rowCount"></span>件 表示中</p>
+				</div>
+				<div>
+					<button id="toggleLayout">リストを拡大</button>
+				</div>
+			</div>
+
+			<div id="tableContainer">
+			</div>
+		</div>
+	</body>
+</html>
