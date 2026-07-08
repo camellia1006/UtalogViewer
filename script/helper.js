@@ -30,9 +30,9 @@ const elements = (() => {
  */
 function setupSocialLinks({socials}) {
 	const sites = {
-		Twitter: {url: id => `https://x.com/${id}`, icon: '../img/x.png'},
-		YouTube: {url: id => `https://www.youtube.com/channel/${id}`, icon: '../img/youtube.png'},
-		TwitCasting: {url: id => `https://twitcasting.tv/${id}`, icon: '../img/twitcasting.png'},
+		Twitter: {url: id => `https://x.com/${id}`, icon: 'img/x.png'},
+		YouTube: {url: id => `https://www.youtube.com/channel/${id}`, icon: 'img/youtube.png'},
+		TwitCasting: {url: id => `https://twitcasting.tv/${id}`, icon: 'img/twitcasting.png'},
 	};
 	const fragment = document.createDocumentFragment();
 
