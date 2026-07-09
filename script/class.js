@@ -224,14 +224,11 @@ export class DataTable {
 		const element = document.createElement('table');
 		element.border = 1;
 
-		const urlCol = table.cols.length - 1;
-
 		{ // ヘッダー
 			const thead = createChild(element, 'thead');
 			const tr = createChild(thead, 'tr');
 
-			for (const [i, col] of table.cols.entries()) {
-				if (i === urlCol) break;
+			for (const col of table.cols.slice(0, -1)) {
 				const th = createChild(tr, 'th');
 				th.textContent = col.label;
 			}
@@ -239,19 +236,20 @@ export class DataTable {
 
 		{ // ボディ
 			const tbody = createChild(element, 'tbody');
+			const protocols = new Set(['http:', 'https:']);
 
 			for (const row of table.rows) {
 				const tr =createChild(tbody, 'tr');
-				tr.dataset.url = row.c[urlCol]?.v ?? '';
+				const urlCol = row.c.at(-1);
+				tr.dataset.url = urlCol?.v ?? '';
 
-				for (const [i, cell] of row.c.entries()) {
-					if (i === urlCol) break;
+				for (const cell of row.c.slice(0, -1)) {
 					
 					const td = createChild(tr, 'td');
-					const text = cell?.f ?? cell?.v ?? '';
+					const text = String(cell?.f ?? cell?.v ?? '');
 					const url = URL.parse(text);
 
-					if (!url) {
+					if (!url || !protocols.has(url.protocol)) {
 						td.textContent = text;
 						continue;
 					}
