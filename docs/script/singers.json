@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "name": "星印",
+        "sheetId": "1SYxF-_2sNXGSIZN_NzM9nVEuU3vbIUeETnEDNiXalGs",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "_star_mark_",
+            "YouTube": "UC7p3VKdnZ--KK_-DfOvGCfw",
+            "TwitCasting": "_star_mark_",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 2,
+        "name": "天ノ譜ステラ",
+        "sheetId": "1p1fdvKdKHYqaVPdxbnoUfEO2x3yz07KcoPMW88JGr4Y",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "amanofu_stella",
+            "YouTube": "UC7WtdrXXd9_wl5nEGbt12Yw",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 3,
+        "name": "柊はる",
+        "sheetId": "1pv4ET_rWsSDt5Hs-8qt0XgFAy7MF6-cbBR-QGSKw0dY",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "hiiragiharuru",
+            "YouTube": "UCaIZ5ouTdYW8pJIEiMY6kAg",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 4,
+        "name": "朱音るら",
+        "sheetId": "1Yujz1GLdwRJ5UpNXxJH6dhDDOCm4aVP71224OS6BuMM",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "AkaneRura_",
+            "YouTube": "UC23wkiGKkM6RJGTYmcoSpzg",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 5,
+        "name": "煽葉にあ",
+        "sheetId": "12oPApabtwPiZO_l-_Iqkob78Dfel4N7CQ-CDUpmW4U4",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "aoba_nia",
+            "YouTube": "UCsqb6VFHWELMBFgNJZwTrvA",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 6,
+        "name": "まんまる",
+        "sheetId": "1jN8d-_AdOHnSU-K7706ShmCiMHkRp__DdONCQH6W1ck",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "manmaru_11_v",
+            "YouTube": "UCOt3KpQ1ZWaL9UZDAcNL-kw",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 7,
+        "name": "甘兎るな",
+        "sheetId": "18KY6iLbLMi1tq_baO4nkgA2VFgmw_WPdUJ5URyEp4sU",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "Amausa_Runa",
+            "YouTube": "UCODqVB3uVdWAOwJuvOvLYPw",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 8,
+        "name": "華崎びいず",
+        "sheetId": "1LMC1_Yw3ViAdpLM72eFzx2Ub4rsitF9czU5Z1HgcC7M",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "hanasaki_biizu",
+            "YouTube": "UCjAkkBESeinpTDpcPDl7w5Q",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 9,
+        "name": "美夜尾あこは",
+        "sheetId": "1NW0Fph9wfD-xx_EBOs2dKxCEHSjftL1UfoVtx_ybZpo",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "myao_aco",
+            "YouTube": "UCqjBG95TJKhjf4Af8fSsLCg",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    },
+    {
+        "id": 10,
+        "name": "YUKi",
+        "sheetId": "1fhuZ0yXEvzmXLpCBF69HoSL1sglJ7cwJbPUVtNisjPc",
+        "tables": [
+            "general",
+            "summary"
+        ],
+        "socials": {
+            "Twitter": "YUKI__02_",
+            "YouTube": "UCOpP496dG3PThmI_MAS1a8w",
+            "TwitCasting": "",
+            "Twitch": ""
+        }
+    }
+]
