@@ -3,8 +3,6 @@ import { Helper, once, debounce, createChild } from './helper.js';
 
 /** @type {DataTable | null} */
 let table;
-/** @type {boolean} */
-let autoPlay = false;
 
 const appInit = once(async () => {
 	Debug.startLabel();
@@ -22,9 +20,9 @@ const appInit = once(async () => {
 	if (!singer) return MessageField.show('データが指定されていません');
 
 	table = new DataTable(Helper.elements.tableContainer, singer);
-	autoPlay = Boolean(Number(params.get('autoplay')) || 0);
 
 	setupEventListeners();
+	Helper.setCustomParams(params);
 	Helper.setupSocialLinks(singer);
 	Helper.setupTableSelect(singer);
 
@@ -115,7 +113,7 @@ function onTableClick(event) {
 			const url = tr.dataset.url;
 
 			table.highlight(tr);
-			Helper.setVideoUrl(url, autoPlay);
+			Helper.setVideoUrl(url);
 			break;
 	}
 }

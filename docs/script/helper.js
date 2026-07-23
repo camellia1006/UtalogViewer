@@ -26,6 +26,26 @@ const elements = (() => {
 })();
 
 /**
+ * @param {URLSearchParams} searchParams 
+ */
+function setCustomParams(searchParams) {
+	const defaults = {
+		autoplay: 0,
+		wrap: 1
+	}
+
+	const params = Object.entries(defaults)
+		.reduce((acc,[key,defaultValue]) => {
+			const value = searchParams.get(key);
+			acc[key] = ['0', '1'].includes(value) ? Number(value) : defaultValue;
+			return acc;
+	}, {});
+
+	elements.videoPlayer.dataset.autoplay = Number(params.autoplay);
+	elements.tableContainer.classList.toggle('nowrap', !params.wrap)
+}
+
+/**
  * @param {{socials: Object.<string, string>}} param0
  */
 function setupSocialLinks({socials}) {
@@ -84,10 +104,9 @@ function setupTableSelect({tables}) {
 
 /**
  * @param {string} url
- * @param {boolean} autoPlay
  */
-function setVideoUrl(url, autoPlay=false) {
-	Debug.startLabel(url, autoPlay);
+function setVideoUrl(url) {
+	Debug.startLabel(url);
 	const platforms = {
 		/**
 		 * @param {URL} parsed
@@ -95,7 +114,7 @@ function setVideoUrl(url, autoPlay=false) {
 		 */
 		'www.youtube.com': parsed => {
 			const {v, t} = Object.fromEntries(parsed.searchParams);
-			return `https://www.youtube.com/embed/${v}?start=${parseInt(t ?? '0')}&autoplay=${Number(autoPlay)}`;
+			return `https://www.youtube.com/embed/${v}?start=${parseInt(t ?? '0')}&autoplay=${autoPlay}`;
 		},
 		/**
 		 * @param {URL} parsed
@@ -104,9 +123,10 @@ function setVideoUrl(url, autoPlay=false) {
 		'twitcasting.tv': parsed => {
 			const [, userId, , videoId] = parsed.pathname.split('/'); // ['', userId, 'movie', videoId]
 			const t = parseInt(parsed.searchParams.get('t') ?? '0');
-			return `https://twitcasting.tv/${userId}/embeddedplayer/${videoId}?t=${t}&auto_play=${Number(autoPlay)}`;
+			return `https://twitcasting.tv/${userId}/embeddedplayer/${videoId}?t=${t}&auto_play=${autoPlay}`;
 		}
 	};
+	const autoPlay = Number(elements.videoPlayer.dataset.autoplay);
 	const parsedUrl = new URL(url);
 	/** @type {Function | undefined} */
 	const convert = platforms[parsedUrl.hostname];
@@ -180,6 +200,7 @@ function showElements(...keys) {
 
 export const Helper = {
 	elements,
+	setCustomParams,
 	setupSocialLinks,
 	setupTableSelect,
 	setVideoUrl,
