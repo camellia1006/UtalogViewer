@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Entrance - UtaLog Viewer</title>
 		<style>
-			body > * {
+			body {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
@@ -68,7 +68,7 @@
 				singersContainer.addEventListener('click', (event) => {
 					const target = event.target.closest('a.content');
 					if (target) {
-						const url = new URL('../index.html', window.location.href);
+						const url = new URL('./index.html', window.location.href);
 						url.searchParams.set('name', target.textContent);
 
 						document.querySelectorAll('input[type="checkbox"]').forEach((input) => {
