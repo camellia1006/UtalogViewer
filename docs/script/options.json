@@ -1,0 +1,12 @@
+{
+	"autoplay": {
+		"description": "楽曲を選択した時に自動で再生する",
+		"type": "boolean",
+		"default": false
+	},
+	"wrap": {
+		"description": "長いデータの場合に途中で改行する",
+		"type": "boolean",
+		"default": true
+	}
+}

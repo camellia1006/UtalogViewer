@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,23 +20,23 @@
 				</div>
 			</div>
 
-			<div id="messageField">
+			<div id="messageField" aria-live="polite">
 				<span>スクリプト準備中</span>
 				<noscript>JavaScriptが無効です</noscript>
 			</div>
 
-			<div id="videoContainer" hidden>
-				<h1 id="videoNotice">
+			<section id="videoContainer" hidden>
+				<p id="videoNotice">
 					<span>楽曲を選択すると、</span>
 					<span>動画が再生されます</span>
-				</h1>
-				<iframe id="videoPlayer" frameborder="0" allowfullscreen></iframe>
-				<a id="platformLink" href="#" target="_blank"></a>
-			</div>
+				</p>
+				<iframe id="videoPlayer" title="動画プレイヤー" allowfullscreen></iframe>
+				<a id="platformLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+			</section>
 
 			<div id="actionBar" hidden>
 				<div>
-					<input id="searchBox" type="search" placeholder="検索...">
+					<input id="searchBox" type="search" placeholder="検索..." aria-label="テーブル内検索">
 					<p id="filterResult"><span id="rowCount"></span>件 表示中</p>
 				</div>
 				<div>
@@ -44,8 +44,8 @@
 				</div>
 			</div>
 
-			<div id="tableContainer">
-			</div>
+			<main id="tableContainer">
+			</main>
 		</div>
 	</body>
 </html>

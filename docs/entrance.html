@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Entrance - UtaLog Viewer</title>
+		<style>
+			body > * {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			label {
+				padding: 4px;
+			}
+			img {
+				aspect-ratio: 1 / 1;
+				height: 24px;
+				margin: 2px;
+			}
+		</style>
+		<script type="module">
+			import { Helper, createChild } from './script/helper.js';
+
+			const getJSON = async (url) => {
+				const response = await fetch(url);
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				return await response.json();
+			};
+
+			const init = async () => {
+				const [options, singers] = await Promise.all([
+					getJSON('./script/options.json'),
+					getJSON('./script/singers.json')
+				]);
+				const fragment = document.createDocumentFragment();
+
+				const optionsContainer = document.getElementById('optionsContainer');
+				for (const [key, details] of Object.entries(options)) {
+					const label = createChild(fragment, 'label');
+					const input = createChild(label, 'input');
+
+					label.append(key);
+					label.title = details.description;
+
+					input.name = key;
+					input.type = 'checkbox';
+					input.checked = details.default;
+				}
+				optionsContainer.replaceChildren(fragment);
+
+				const singersContainer = document.getElementById('singersContainer');
+				for (const singer of singers) {
+					const tr = createChild(fragment, 'tr');
+					const name = createChild(tr, 'td');
+					const anchor = createChild(name, 'a');
+					anchor.className = 'content';
+					anchor.textContent = singer.name;
+					anchor.href = '#';
+
+					const socials = createChild(tr, 'td');
+					Helper.setupSocialLinks(singer, socials);
+				}
+				singersContainer.replaceChildren(fragment);
+				singersContainer.addEventListener('click', (event) => {
+					/** @type {HTMLAnchorElement | null} */
+					const target = event.target.closest('a.content');
+					if (target) {
+						const url = new URL('../index.html', window.location.href);
+						url.hash = target.textContent;
+
+						document.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+							url.searchParams.set(input.name, Number(input.checked));
+						});
+						window.location.href = url.toString();
+					}
+				});
+			};
+
+			init();
+		</script>
+	</head>
+	<body>
+		<h1>UtaLog Viewer</h1>
+		<fieldset>
+			<legend>オプション</legend>
+			<div id="optionsContainer"></div>
+		</fieldset>
+		<table id="singersContainer"></table>
+	</body>
+</html>

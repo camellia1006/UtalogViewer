@@ -29,31 +29,43 @@ const elements = (() => {
  * @param {URLSearchParams} searchParams 
  */
 function setCustomParams(searchParams) {
-	const defaults = {
-		autoplay: 0,
-		wrap: 1
+	const defaults = { // 管理の簡便化
+		autoplay: { type: 'boolean', value: false },
+		wrap: { type: 'boolean', value: true}
+	}
+	const toType = (type, value) => {
+		switch(type) {
+			case 'number':
+				return Number(value);
+			case 'boolean': // numeric boolean
+				return Boolean(Number(value));
+			case 'string':
+			default:
+				return String(value);
+		}
 	}
 
 	const params = Object.entries(defaults)
-		.reduce((acc,[key,defaultValue]) => {
+		.reduce((acc,[key,options]) => {
 			const value = searchParams.get(key);
-			acc[key] = ['0', '1'].includes(value) ? Number(value) : defaultValue;
+			acc[key] = toType(options.type, value ?? options.value);
 			return acc;
 	}, {});
 
+	// 実装への反映
 	elements.videoPlayer.dataset.autoplay = Number(params.autoplay);
 	elements.tableContainer.classList.toggle('nowrap', !params.wrap)
 }
 
+const sites = {
+	Twitter: {url: id => `https://x.com/${id}`, icon: 'img/x.png'},
+	YouTube: {url: id => `https://www.youtube.com/channel/${id}`, icon: 'img/youtube.png'},
+	TwitCasting: {url: id => `https://twitcasting.tv/${id}`, icon: 'img/twitcasting.png'},
+};
 /**
  * @param {{socials: Object.<string, string>}} param0
  */
-function setupSocialLinks({socials}) {
-	const sites = {
-		Twitter: {url: id => `https://x.com/${id}`, icon: 'img/x.png'},
-		YouTube: {url: id => `https://www.youtube.com/channel/${id}`, icon: 'img/youtube.png'},
-		TwitCasting: {url: id => `https://twitcasting.tv/${id}`, icon: 'img/twitcasting.png'},
-	};
+function setupSocialLinks({socials}, container = elements.socialLinks) {
 	const fragment = document.createDocumentFragment();
 
 	for (const [key, id] of Object.entries(socials)) {
@@ -72,7 +84,7 @@ function setupSocialLinks({socials}) {
 		img.alt = key;
 	}
 
-	elements.socialLinks.replaceChildren(fragment);
+	container.replaceChildren(fragment);
 }
 
 /**
@@ -126,7 +138,7 @@ function setVideoUrl(url) {
 			return `https://twitcasting.tv/${userId}/embeddedplayer/${videoId}?t=${t}&auto_play=${autoPlay}`;
 		}
 	};
-	const autoPlay = Number(elements.videoPlayer.dataset.autoplay);
+	const autoPlay = elements.videoPlayer.dataset.autoplay;
 	const parsedUrl = new URL(url);
 	/** @type {Function | undefined} */
 	const convert = platforms[parsedUrl.hostname];
