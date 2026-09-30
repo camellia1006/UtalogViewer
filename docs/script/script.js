@@ -8,17 +8,21 @@ const appInit = once(async () => {
 	Debug.startLabel();
 
 	const response = await fetch('./script/singers.json');
-	/** @type {Object[]} */
 	const singers = await response.json();
 
-	const url = new URL(window.location.href);
-	const singer = singers.find(singer => singer.name === url.hash.slice(1));
+	const params = new URLSearchParams(location.search);
+	/** @type {string[]} */
+	const keys = ['id', 'name'];
+	const values = keys.map(key => params.get(key));
+	const singer = keys
+		.map((key, i) => values[i] && singers.find(singer => String(singer[key]) === values[i]))
+		.filter(Boolean)[0];
 	if (!singer) return MessageField.show('データが指定されていません');
 
 	table = new DataTable(Helper.elements.tableContainer, singer);
 
 	setupEventListeners();
-	Helper.setCustomParams(url.searchParams);
+	Helper.setCustomParams(params);
 	Helper.setupSocialLinks(singer);
 	Helper.setupTableSelect(singer);
 

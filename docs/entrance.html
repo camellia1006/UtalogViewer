@@ -66,11 +66,10 @@
 				}
 				singersContainer.replaceChildren(fragment);
 				singersContainer.addEventListener('click', (event) => {
-					/** @type {HTMLAnchorElement | null} */
 					const target = event.target.closest('a.content');
 					if (target) {
 						const url = new URL('../index.html', window.location.href);
-						url.hash = target.textContent;
+						url.searchParams.set('name', target.textContent);
 
 						document.querySelectorAll('input[type="checkbox"]').forEach((input) => {
 							url.searchParams.set(input.name, Number(input.checked));
